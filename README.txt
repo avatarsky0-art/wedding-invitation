@@ -1,1 +1,1 @@
-v6 reference-style. Музыка бөлүмү жок. GitHub: index.html, style.css, script.js + assets/botanical.svg жаңыртыңыз.
+v7 rebuilt from reference. Upload index.html style.css script.js and assets/branch.svg. Music section removed. Open button is a real anchor and cannot block navigation.
