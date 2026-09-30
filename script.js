@@ -3,40 +3,112 @@ const CONFIG = {
   WHATSAPP_NUMBER: "996555123456"
 };
 
-const $ = (s, scope = document) => scope.querySelector(s);
-const $$ = (s, scope = document) => [...scope.querySelectorAll(s)];
+const $ = (selector, scope = document) => scope.querySelector(selector);
+const $$ = (selector, scope = document) => [...scope.querySelectorAll(selector)];
 
-function loader() {
-  const el = $("#loader");
-  window.addEventListener("load", () => {
-    setTimeout(() => {
-      el?.classList.add("is-hidden");
-      document.body.classList.remove("is-loading");
-    }, 1250);
-  });
-  setTimeout(() => {
-    el?.classList.add("is-hidden");
-    document.body.classList.remove("is-loading");
-  }, 3200);
+const audio = $("#bgMusic");
+const soundButton = $("#soundToggle");
+const envelopeScreen = $("#envelopeScreen");
+const envelope = $("#openEnvelope");
+const openHint = $("#openHint");
+const main = $("#invitationSite");
+
+function updateSoundState(isPlaying) {
+  soundButton?.classList.toggle("is-playing", isPlaying);
+  soundButton?.setAttribute(
+    "aria-label",
+    isPlaying ? "Музыканы токтотуу" : "Музыканы күйгүзүү"
+  );
 }
 
+/*
+  Браузер уруксат берсе музыка баракча ачылганда эле башталат.
+  iPhone/Safari/Chrome autoplay'ду бөгөттөсө, конвертти биринчи басканда
+  ошол user interaction аркылуу музыка сөзсүз иштетилет.
+*/
+async function tryAutoplay() {
+  if (!audio) return;
+  audio.volume = 0.72;
+  try {
+    await audio.play();
+    updateSoundState(true);
+  } catch {
+    updateSoundState(false);
+  }
+}
+
+async function ensureMusicStarts() {
+  if (!audio || !audio.paused) return;
+  try {
+    audio.volume = 0.72;
+    await audio.play();
+    updateSoundState(true);
+  } catch (error) {
+    console.warn("Музыканы иштетүүгө браузер уруксат берген жок:", error);
+  }
+}
+
+let opening = false;
+
+async function openInvitation() {
+  if (opening) return;
+  opening = true;
+
+  await ensureMusicStarts();
+
+  envelope?.classList.add("is-open");
+
+  window.setTimeout(() => {
+    envelopeScreen?.classList.add("is-leaving");
+    document.body.classList.remove("intro-active");
+    main?.setAttribute("aria-hidden", "false");
+
+    window.setTimeout(() => {
+      reveals();
+      scrollEffects();
+    }, 80);
+  }, 980);
+}
+
+envelope?.addEventListener("click", openInvitation);
+openHint?.addEventListener("click", openInvitation);
+
+soundButton?.addEventListener("click", async () => {
+  if (!audio) return;
+
+  if (audio.paused) {
+    try {
+      await audio.play();
+      updateSoundState(true);
+    } catch {}
+  } else {
+    audio.pause();
+    updateSoundState(false);
+  }
+});
+
 function reveals() {
-  const items = $$(".reveal, .image-reveal");
+  const items = $$(".reveal:not(.is-visible), .image-reveal:not(.is-visible)");
+
   if (!("IntersectionObserver" in window)) {
     items.forEach(el => el.classList.add("is-visible"));
     return;
   }
-  const obs = new IntersectionObserver(entries => {
+
+  const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
       entry.target.classList.add("is-visible");
-      obs.unobserve(entry.target);
+      observer.unobserve(entry.target);
     });
-  }, { threshold: 0.14, rootMargin: "0px 0px -40px 0px" });
+  }, {
+    threshold: 0.14,
+    rootMargin: "0px 0px -42px 0px"
+  });
 
-  items.forEach((el, i) => {
-    el.style.transitionDelay = `${Math.min((i % 4) * 70, 210)}ms`;
-    obs.observe(el);
+  items.forEach((el, index) => {
+    el.style.transitionDelay = `${Math.min((index % 4) * 70, 210)}ms`;
+    observer.observe(el);
   });
 }
 
@@ -45,67 +117,47 @@ function countdown() {
   if (Number.isNaN(target)) return;
 
   const nodes = {
-    days: $("#days"), hours: $("#hours"),
-    minutes: $("#minutes"), seconds: $("#seconds")
+    days: $("#days"),
+    hours: $("#hours"),
+    minutes: $("#minutes"),
+    seconds: $("#seconds")
   };
+
   const two = n => String(n).padStart(2, "0");
 
   const update = () => {
-    let diff = target - Date.now();
-    if (diff < 0) diff = 0;
-    const d = Math.floor(diff / 86400000);
-    const h = Math.floor((diff % 86400000) / 3600000);
-    const m = Math.floor((diff % 3600000) / 60000);
-    const s = Math.floor((diff % 60000) / 1000);
-    nodes.days.textContent = two(d);
-    nodes.hours.textContent = two(h);
-    nodes.minutes.textContent = two(m);
-    nodes.seconds.textContent = two(s);
+    let difference = target - Date.now();
+    if (difference < 0) difference = 0;
+
+    const days = Math.floor(difference / 86400000);
+    const hours = Math.floor((difference % 86400000) / 3600000);
+    const minutes = Math.floor((difference % 3600000) / 60000);
+    const seconds = Math.floor((difference % 60000) / 1000);
+
+    if (nodes.days) nodes.days.textContent = two(days);
+    if (nodes.hours) nodes.hours.textContent = two(hours);
+    if (nodes.minutes) nodes.minutes.textContent = two(minutes);
+    if (nodes.seconds) nodes.seconds.textContent = two(seconds);
   };
+
   update();
   setInterval(update, 1000);
-}
-
-function music() {
-  const audio = $("#bgMusic");
-  const btn = $("#soundToggle");
-  if (!audio || !btn) return;
-
-  const setState = playing => {
-    btn.classList.toggle("is-playing", playing);
-    btn.setAttribute("aria-label", playing ? "Музыканы токтотуу" : "Музыканы күйгүзүү");
-  };
-
-  btn.addEventListener("click", async () => {
-    try {
-      if (audio.paused) {
-        audio.volume = 0.72;
-        await audio.play();
-        setState(true);
-      } else {
-        audio.pause();
-        setState(false);
-      }
-    } catch (e) {
-      console.warn("Audio play blocked:", e);
-    }
-  });
 }
 
 function rsvp() {
   const form = $("#rsvpForm");
   if (!form) return;
 
-  form.addEventListener("submit", e => {
-    e.preventDefault();
+  form.addEventListener("submit", event => {
+    event.preventDefault();
 
-    const name = $("#guestName").value.trim();
-    const attendance = $("#attendance").value;
-    const count = $("#guestCount").value;
-    const note = $("#guestMessage").value.trim();
+    const name = $("#guestName")?.value.trim();
+    const attendance = $("#attendance")?.value;
+    const count = $("#guestCount")?.value;
+    const note = $("#guestMessage")?.value.trim();
 
     if (!name) {
-      $("#guestName").focus();
+      $("#guestName")?.focus();
       return;
     }
 
@@ -117,50 +169,51 @@ function rsvp() {
       note ? `Билдирүү: ${note}` : ""
     ].filter(Boolean);
 
-    const url = `https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${encodeURIComponent(lines.join("\n"))}`;
+    const url =
+      `https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${encodeURIComponent(lines.join("\n"))}`;
+
     window.open(url, "_blank", "noopener,noreferrer");
   });
 }
 
 function scrollEffects() {
   const progress = $("#scrollProgress");
-  const parallax = $$(".parallax-img");
-
+  const parallaxItems = $$(".parallax-img");
   let ticking = false;
 
   const update = () => {
-    const doc = document.documentElement;
-    const max = Math.max(1, doc.scrollHeight - innerHeight);
-    progress.style.width = `${Math.min(100, (scrollY / max) * 100)}%`;
+    const root = document.documentElement;
+    const maxScroll = Math.max(1, root.scrollHeight - innerHeight);
 
-    parallax.forEach(el => {
-      const rect = el.getBoundingClientRect();
+    if (progress) {
+      progress.style.width = `${Math.min(100, (scrollY / maxScroll) * 100)}%`;
+    }
+
+    parallaxItems.forEach(item => {
+      const rect = item.getBoundingClientRect();
       if (rect.bottom < 0 || rect.top > innerHeight) return;
+
       const center = rect.top + rect.height / 2 - innerHeight / 2;
       const offset = Math.max(-34, Math.min(34, center * -0.045));
-      el.style.setProperty("--parallax", `${offset}px`);
+      item.style.setProperty("--parallax", `${offset}px`);
     });
 
     ticking = false;
   };
 
-  const onScroll = () => {
-    if (!ticking) {
-      requestAnimationFrame(update);
-      ticking = true;
-    }
+  const requestUpdate = () => {
+    if (ticking) return;
+    requestAnimationFrame(update);
+    ticking = true;
   };
 
-  addEventListener("scroll", onScroll, { passive: true });
-  addEventListener("resize", onScroll);
+  addEventListener("scroll", requestUpdate, { passive: true });
+  addEventListener("resize", requestUpdate);
   update();
 }
 
-loader();
 document.addEventListener("DOMContentLoaded", () => {
-  reveals();
   countdown();
-  music();
   rsvp();
-  scrollEffects();
+  tryAutoplay();
 });
