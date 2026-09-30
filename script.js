@@ -1,105 +1,112 @@
 
 const CONFIG = {
-  WEDDING_DATE: '2026-11-14T17:00:00+06:00',
-  WHATSAPP_NUMBER: '996555123456'
+  WEDDING_DATE: "2026-11-14T17:00:00+06:00",
+  WHATSAPP_NUMBER: "996555123456"
 };
 
-const qs = (s, scope=document) => scope.querySelector(s);
-const qsa = (s, scope=document) => [...scope.querySelectorAll(s)];
+const $ = (s, scope = document) => scope.querySelector(s);
+const $$ = (s, scope = document) => [...scope.querySelectorAll(s)];
 
-const cover = qs('#cover');
-const openBtn = qs('#openInvitation');
-const invitation = qs('#invitation');
-const audio = qs('#bgMusic');
-const musicToggle = qs('#musicToggle');
-const playerRow = qs('#playerRow');
+const gate = $("#gate");
+const openButton = $("#openInvite");
+const site = $("#site");
+const audio = $("#bgMusic");
+const musicToggle = $("#musicToggle");
+const musicPlayer = $("#musicPlayer");
 
-function setMusicState(playing){
-  musicToggle.classList.toggle('is-playing', playing);
-  musicToggle.setAttribute('aria-label', playing ? 'Музыканы токтотуу' : 'Музыканы күйгүзүү');
+function setMusicState(playing) {
+  musicToggle?.classList.toggle("is-playing", playing);
+  musicToggle?.setAttribute("aria-label", playing ? "Музыканы токтотуу" : "Музыканы күйгүзүү");
 }
 
-async function playMusic(){
-  try{
+async function startMusic() {
+  if (!audio) return;
+  try {
     audio.volume = 0.72;
     await audio.play();
     setMusicState(true);
-  }catch(e){
+  } catch (error) {
     setMusicState(false);
   }
 }
 
-function openInvitation(){
-  cover.classList.add('is-hidden');
-  document.body.classList.remove('locked');
-  invitation.setAttribute('aria-hidden','false');
-  playMusic();
-  setTimeout(()=>revealOnScroll(), 60);
-}
+window.openInvitation = function openInvitation() {
+  gate?.classList.add("is-open");
+  document.body.classList.remove("is-locked");
+  site?.setAttribute("aria-hidden", "false");
+  startMusic();
+  setTimeout(initReveal, 50);
+};
 
-openBtn?.addEventListener('click', openInvitation);
-playerRow?.addEventListener('click', async ()=>{
-  if(audio.paused) await playMusic();
-  else { audio.pause(); setMusicState(false); }
-});
-musicToggle?.addEventListener('click', async ()=>{
-  if(audio.paused) await playMusic();
+openButton?.addEventListener("click", window.openInvitation);
+
+musicToggle?.addEventListener("click", async () => {
+  if (!audio) return;
+  if (audio.paused) await startMusic();
   else { audio.pause(); setMusicState(false); }
 });
 
-function countdown(){
-  const target = new Date(CONFIG.WEDDING_DATE).getTime();
-  const nodes = {days:qs('#days'),hours:qs('#hours'),minutes:qs('#minutes'),seconds:qs('#seconds')};
-  const pad = n => String(n).padStart(2,'0');
-  function update(){
-    let diff = Math.max(0, target - Date.now());
-    const d = Math.floor(diff/86400000);
-    const h = Math.floor((diff%86400000)/3600000);
-    const m = Math.floor((diff%3600000)/60000);
-    const s = Math.floor((diff%60000)/1000);
-    nodes.days.textContent = pad(d);
-    nodes.hours.textContent = pad(h);
-    nodes.minutes.textContent = pad(m);
-    nodes.seconds.textContent = pad(s);
+musicPlayer?.addEventListener("click", async () => {
+  if (!audio) return;
+  if (audio.paused) await startMusic();
+  else { audio.pause(); setMusicState(false); }
+});
+
+function initReveal() {
+  const nodes = $$(".reveal:not(.is-visible)");
+  if (!("IntersectionObserver" in window)) {
+    nodes.forEach(n => n.classList.add("is-visible"));
+    return;
   }
-  update();
-  setInterval(update,1000);
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add("is-visible");
+      observer.unobserve(entry.target);
+    });
+  }, { threshold: 0.12 });
+  nodes.forEach(node => observer.observe(node));
 }
 
-function rsvp(){
-  const form = qs('#rsvpForm');
-  form?.addEventListener('submit', e=>{
-    e.preventDefault();
-    const name = qs('#guestName').value.trim();
-    const attendance = qs('#attendance').value;
-    const count = qs('#guestCount').value;
-    const note = qs('#guestMessage').value.trim();
-    if(!name) return qs('#guestName').focus();
-    const text = [
+function initCountdown() {
+  const target = new Date(CONFIG.WEDDING_DATE).getTime();
+  const pad = n => String(n).padStart(2, "0");
+  const nodes = { days: $("#days"), hours: $("#hours"), minutes: $("#minutes"), seconds: $("#seconds") };
+  function tick() {
+    let diff = Math.max(0, target - Date.now());
+    const days = Math.floor(diff / 86400000);
+    const hours = Math.floor((diff % 86400000) / 3600000);
+    const minutes = Math.floor((diff % 3600000) / 60000);
+    const seconds = Math.floor((diff % 60000) / 1000);
+    if (nodes.days) nodes.days.textContent = pad(days);
+    if (nodes.hours) nodes.hours.textContent = pad(hours);
+    if (nodes.minutes) nodes.minutes.textContent = pad(minutes);
+    if (nodes.seconds) nodes.seconds.textContent = pad(seconds);
+  }
+  tick();
+  setInterval(tick, 1000);
+}
+
+function initRsvp() {
+  const form = $("#rsvpForm");
+  form?.addEventListener("submit", event => {
+    event.preventDefault();
+    const name = $("#guestName")?.value.trim();
+    const attendance = $("#attendance")?.value;
+    const count = $("#guestCount")?.value;
+    const note = $("#guestMessage")?.value.trim();
+    if (!name) return $("#guestName")?.focus();
+    const lines = [
       `Саламатсызбы! Мен ${name}.`,
-      attendance === 'Ооба, катышам' ? `Тойго катышам. Биз ${count} адам болобуз.` : 'Тилекке каршы, тойго катыша албайм.',
-      note ? `Билдирүү: ${note}` : ''
-    ].filter(Boolean).join('
-');
-    const url = `https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
-    window.open(url,'_blank','noopener,noreferrer');
+      attendance === "Ооба, катышам" ? `Тойго катышам. Биз ${count} адам болобуз.` : "Тилекке каршы, тойго катыша албайм.",
+      note ? `Билдирүү: ${note}` : ""
+    ].filter(Boolean);
+    const url = `https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${encodeURIComponent(lines.join("\n"))}`;
+    window.open(url, "_blank", "noopener,noreferrer");
   });
 }
 
-function revealOnScroll(){
-  const items = qsa('.reveal');
-  const io = new IntersectionObserver(entries=>{
-    entries.forEach(entry=>{
-      if(entry.isIntersecting){
-        entry.target.classList.add('visible');
-        io.unobserve(entry.target);
-      }
-    });
-  },{threshold:.14});
-  items.forEach(el=>io.observe(el));
-}
-
-document.addEventListener('DOMContentLoaded', ()=>{
-  countdown();
-  rsvp();
+document.addEventListener("DOMContentLoaded", () => {
+  initCountdown();
+  initRsvp();
 });

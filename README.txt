@@ -1,10 +1,12 @@
-MIRBEK & MEERIM — EDITORIAL INVITATION v4
+МИРБЕК & МЭЭРИМ — REFERENCE MATCH v5
 
-Жаңы версия sample-сүрөттөгүдөй узун editorial карточка стилине өзгөртүлдү.
+Бул версия колдонуучу жөнөткөн референстеги стильге жакындатылып кайра курулду:
+- sage/olive green + warm ivory
+- Cormorant Garamond typography
+- thin botanical line-art
+- narrow mobile editorial cards
+- minimal animations
+- working open button
+- music starts on opening click
 
-Алмаштыра турган файлдар:
-- index.html
-- style.css
-- script.js
-
-assets папкасын кайра жүктөөнүн кереги жок.
+GitHub: root'тагы index.html, style.css, script.js файлдарын алмаштырыңыз. assets папкасын өзгөртүүнүн кереги жок.
