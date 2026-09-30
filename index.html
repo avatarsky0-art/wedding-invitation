@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#858a65" />
+  <meta name="theme-color" content="#737957" />
   <title>Мирбек & Мээрим — Тойго чакыруу</title>
   <meta name="description" content="Мирбек жана Мээрим сизди үйлөнүү тоюна чын жүрөктөн чакырат." />
   <meta property="og:type" content="website" />
@@ -13,174 +13,144 @@
   <link rel="icon" href="assets/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@300;400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=5" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Manrope:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=6" />
 </head>
-<body class="is-locked">
-
+<body class="locked">
   <audio id="bgMusic" preload="auto" loop>
     <source src="assets/music.mp3" type="audio/mpeg" />
   </audio>
 
-  <!-- START COVER: референстеги минималисттик olive cover -->
-  <section class="gate" id="gate">
-    <div class="gate__paper" aria-hidden="true"></div>
-    <div class="gate__ornament gate__ornament--top" aria-hidden="true">
-      <svg viewBox="0 0 220 120"><path d="M18 102C58 65 96 39 199 16"/><path d="M52 75c7-18 16-27 27-34M77 60c5-16 13-26 25-34M105 46c6-13 13-21 24-28M50 76c-15-2-27 0-38 7M78 59c-12-5-23-6-34-2M106 45c-11-7-20-9-31-7"/></svg>
-    </div>
-
-    <div class="gate__content">
-      <p class="micro-label">ТОЙГО ЧАКЫРУУ</p>
-      <div class="gate__names">
-        <span>Мирбек</span>
-        <i>&</i>
-        <span>Мээрим</span>
+  <section class="entry" id="entry">
+    <img class="entry__leaf entry__leaf--tl" src="assets/botanical.svg" alt="" aria-hidden="true" />
+    <img class="entry__leaf entry__leaf--br" src="assets/botanical.svg" alt="" aria-hidden="true" />
+    <div class="entry__frame">
+      <p class="entry__small">ТОЙГО ЧАКЫРУУ</p>
+      <div class="entry__names">
+        <span>Мирбек</span><i>&</i><span>Мээрим</span>
       </div>
-      <div class="gate__rule"></div>
-      <p class="gate__date">14 · 11 · 2026</p>
-      <button id="openInvite" class="gate__button" type="button">ЧАКЫРУУНУ АЧУУ</button>
-    </div>
-
-    <div class="gate__ornament gate__ornament--bottom" aria-hidden="true">
-      <svg viewBox="0 0 220 120"><path d="M18 102C58 65 96 39 199 16"/><path d="M52 75c7-18 16-27 27-34M77 60c5-16 13-26 25-34M105 46c6-13 13-21 24-28M50 76c-15-2-27 0-38 7M78 59c-12-5-23-6-34-2M106 45c-11-7-20-9-31-7"/></svg>
+      <p class="entry__date">14 · 11 · 2026</p>
+      <button class="entry__open" id="openInvitation" type="button">ЧАКЫРУУНУ АЧУУ</button>
     </div>
   </section>
 
-  <button class="music" id="musicToggle" type="button" aria-label="Музыканы күйгүзүү"><span>♫</span></button>
+  <button class="music" id="musicToggle" type="button" aria-label="Музыканы күйгүзүү">♫</button>
 
-  <main id="site" class="site" aria-hidden="true">
-    <div class="sheet">
+  <main class="page" id="page" aria-hidden="true">
+    <div class="stack">
 
-      <!-- 1. Olive title card -->
-      <section class="card olive title-card reveal">
-        <div class="botanical botanical--left" aria-hidden="true">
-          <svg viewBox="0 0 220 280"><path d="M28 255C91 189 104 104 182 31"/><path d="M74 190c-22-8-39-7-55 2M83 169c15-20 29-31 47-38M106 130c-19-5-36-2-48 7M122 103c11-18 25-31 43-40M145 75c-13-1-26 2-38 10"/></svg>
-        </div>
-        <div class="title-card__center">
-          <p class="tiny light">БИЗ ҮЙЛӨНӨБҮЗ</p>
-          <h1 class="display-names">Мирбек <em>&</em> Мээрим</h1>
-          <p class="small-date">14.11.2026</p>
-        </div>
-        <div class="botanical botanical--right" aria-hidden="true">
-          <svg viewBox="0 0 220 280"><path d="M28 255C91 189 104 104 182 31"/><path d="M74 190c-22-8-39-7-55 2M83 169c15-20 29-31 47-38M106 130c-19-5-36-2-48 7M122 103c11-18 25-31 43-40M145 75c-13-1-26 2-38 10"/></svg>
+      <section class="card olive reveal">
+        <img class="botanical botanical--left" src="assets/botanical.svg" alt="" aria-hidden="true" />
+        <img class="botanical botanical--right" src="assets/botanical.svg" alt="" aria-hidden="true" />
+        <div class="card__pad hero-card">
+          <p class="tiny light">ТОЙГО ЧАКЫРУУ</p>
+          <h1 class="couple"><span>Мирбек</span><i>&</i><span>Мээрим</span></h1>
+          <p class="small-date">14 · 11 · 2026</p>
         </div>
       </section>
 
-      <!-- 2. Invitation text -->
-      <section class="card ivory reveal">
-        <div class="card-pad invitation-copy">
-          <p class="tiny olive-text">УРМАТТУУ КОНОГУБУЗ!</p>
-          <p class="lead-copy">Биздин жашообуздагы эң маанилүү күндөрдүн бирин сиз менен бирге өткөрүү — биз үчүн чоң бакыт.</p>
-          <div class="fine-rule"><span></span><b>✦</b><span></span></div>
-          <p class="body-copy">Сизди биздин үйлөнүү тоюбуздун кадырлуу коногу болууга чын жүрөктөн чакырабыз.</p>
-        </div>
-      </section>
-
-      <!-- 3. First photo -->
       <section class="card photo-card reveal">
         <img src="assets/hero.webp" alt="Мирбек жана Мээрим" />
       </section>
 
-      <!-- 4. Date / calendar style -->
       <section class="card ivory reveal">
-        <div class="card-pad calendar-card">
-          <p class="tiny olive-text">БУЛ КҮНДҮ ЭСТЕП КАЛЫҢЫЗ</p>
-          <div class="calendar-date">
-            <span class="calendar-date__month">НОЯБРЬ</span>
-            <strong>14</strong>
-            <span class="calendar-date__year">2026</span>
-          </div>
-          <p class="calendar-time">ИШЕМБИ · 17:00</p>
+        <div class="card__pad centered invitation-copy">
+          <p class="tiny">УРМАТТУУ КОНОГУБУЗ!</p>
+          <p class="serif-copy">
+            Жашообуздагы эң маанилүү күндөрдүн бирин сиз менен бирге өткөрүү —
+            биз үчүн чоң бакыт. Сизди биздин үйлөнүү тоюбуздун кадырлуу коногу
+            болууга чын жүрөктөн чакырабыз.
+          </p>
         </div>
       </section>
 
-      <!-- 5. Music line -->
       <section class="card olive reveal">
-        <div class="card-pad text-center music-card">
-          <p class="tiny light">БИЗДИН КҮНДҮН ЫРГАГЫ</p>
-          <h2 class="serif-title light">Сүйүүбүздүн обону</h2>
-          <button class="music-player" id="musicPlayer" type="button"><span>◀</span><b>♫</b><span>▶</span></button>
+        <img class="botanical botanical--date" src="assets/botanical.svg" alt="" aria-hidden="true" />
+        <div class="card__pad centered date-block">
+          <p class="tiny light">БУЛ КҮНДҮ ЭСТЕП КАЛЫҢЫЗ</p>
+          <div class="big-date">
+            <span class="big-date__month">НОЯБРЬ</span>
+            <strong>14</strong>
+            <span class="big-date__year">2026</span>
+          </div>
+          <p class="date-time">ИШЕМБИ · 17:00</p>
         </div>
       </section>
 
-      <!-- 6. Timeline -->
       <section class="card ivory reveal">
-        <div class="card-pad">
-          <p class="tiny olive-text text-center">ТОЙ ПРОГРАММАСЫ</p>
-          <h2 class="serif-title text-center">Биздин күн</h2>
-          <div class="timeline">
-            <div class="timeline__item"><div class="timeline__icon">◇</div><time>17:00</time><p>Конокторду тосуп алуу</p></div>
-            <div class="timeline__item"><div class="timeline__icon">♡</div><time>18:00</time><p>Тойдун ачылышы</p></div>
-            <div class="timeline__item"><div class="timeline__icon">✦</div><time>19:30</time><p>Майрамдык программа</p></div>
-            <div class="timeline__item"><div class="timeline__icon">♪</div><time>20:30</time><p>Биринчи бий</p></div>
-            <div class="timeline__item"><div class="timeline__icon">☾</div><time>23:00</time><p>Кеченин жыйынтыгы</p></div>
+        <div class="card__pad program-block">
+          <h2 class="section-title">Той программасы</h2>
+          <div class="program-list">
+            <div><time>17:00</time><span></span><p>Конокторду тосуп алуу</p></div>
+            <div><time>18:00</time><span></span><p>Тойдун ачылышы</p></div>
+            <div><time>19:30</time><span></span><p>Майрамдык программа</p></div>
+            <div><time>20:30</time><span></span><p>Биринчи бий</p></div>
+            <div><time>23:00</time><span></span><p>Кеченин жыйынтыгы</p></div>
           </div>
         </div>
       </section>
 
-      <!-- 7. Second photo -->
       <section class="card photo-card reveal">
         <img src="assets/story.webp" alt="Мирбек менен Мээрим" />
       </section>
 
-      <!-- 8. Countdown -->
-      <section class="card olive reveal">
-        <div class="card-pad text-center">
-          <p class="tiny light">ТОЙГО ЧЕЙИН</p>
-          <h2 class="serif-title light">Калган убакыт</h2>
-          <div class="countdown" id="countdown">
-            <div><strong id="days">00</strong><span>Күн</span></div>
-            <div><strong id="hours">00</strong><span>Саат</span></div>
-            <div><strong id="minutes">00</strong><span>Мүнөт</span></div>
-            <div><strong id="seconds">00</strong><span>Секунд</span></div>
+      <section class="card ivory reveal">
+        <div class="card__pad centered">
+          <p class="tiny">ТОЙГО ЧЕЙИН</p>
+          <h2 class="section-title">Калган убакыт</h2>
+          <div class="countdown" id="countdown" aria-live="polite">
+            <div><strong id="days">00</strong><span>КҮН</span></div>
+            <div><strong id="hours">00</strong><span>СААТ</span></div>
+            <div><strong id="minutes">00</strong><span>МҮНӨТ</span></div>
+            <div><strong id="seconds">00</strong><span>СЕКУНД</span></div>
           </div>
         </div>
       </section>
 
-      <!-- 9. Location -->
-      <section class="card ivory reveal">
-        <div class="card-pad text-center location-card">
-          <div class="line-icon">⌖</div>
-          <p class="tiny olive-text">ӨТКӨРҮЛҮҮЧҮ ЖАЙ</p>
-          <h2 class="serif-title">Арууке банкет залы</h2>
-          <p class="body-copy">Бишкек шаары · 17:00</p>
+      <section class="card olive reveal">
+        <img class="botanical botanical--venue" src="assets/botanical.svg" alt="" aria-hidden="true" />
+        <div class="card__pad centered venue-block">
+          <p class="tiny light">ӨТКӨРҮЛҮҮЧҮ ЖАЙ</p>
+          <h2 class="venue-name">Арууке<br>банкет залы</h2>
+          <p class="venue-meta">БИШКЕК ШААРЫ · 17:00</p>
           <a class="outline-btn" href="https://www.google.com/maps/search/?api=1&query=Bishkek" target="_blank" rel="noopener">КАРТАДАН КӨРҮҮ</a>
         </div>
       </section>
 
-      <!-- 10. RSVP -->
       <section class="card ivory reveal">
-        <div class="card-pad text-center">
-          <p class="tiny olive-text">КАТЫШУУҢУЗДУ ЫРАСТОО</p>
-          <h2 class="serif-title">Сизди күтөбүз</h2>
-          <p class="body-copy">Төмөнкү форманы толтуруп, WhatsApp аркылуу жооп жөнөтүңүз.</p>
-          <form id="rsvpForm" class="rsvp-form">
+        <div class="card__pad centered">
+          <p class="tiny">КАТЫШУУҢУЗДУ ЫРАСТОО</p>
+          <h2 class="section-title">Сизди күтөбүз</h2>
+          <form class="rsvp" id="rsvpForm">
             <input id="guestName" type="text" placeholder="Атыңыз" required />
-            <select id="attendance"><option value="Ооба, катышам">Ооба, катышам</option><option value="Тилекке каршы катыша албайм">Тилекке каршы жок</option></select>
-            <select id="guestCount"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
+            <select id="attendance">
+              <option value="Ооба, катышам">Ооба, катышам</option>
+              <option value="Тилекке каршы катыша албайм">Тилекке каршы жок</option>
+            </select>
+            <select id="guestCount">
+              <option value="1">1 адам</option><option value="2">2 адам</option><option value="3">3 адам</option><option value="4">4 адам</option><option value="5">5 адам</option>
+            </select>
             <textarea id="guestMessage" rows="3" placeholder="Каалоо же билдирүү"></textarea>
-            <button class="filled-btn" type="submit">WHATSAPP АРКЫЛУУ ЖООП БЕРҮҮ</button>
+            <button type="submit">WHATSAPP АРКЫЛУУ ЖООП БЕРҮҮ</button>
           </form>
         </div>
       </section>
 
-      <!-- 11. Final photo -->
       <section class="card photo-card reveal">
         <img src="assets/finale.webp" alt="Мирбек жана Мээрим" />
       </section>
 
-      <!-- 12. Final card -->
       <section class="card olive reveal">
-        <div class="card-pad text-center final-card">
+        <img class="botanical botanical--left" src="assets/botanical.svg" alt="" aria-hidden="true" />
+        <div class="card__pad centered final-block">
           <p class="tiny light">СҮЙҮҮ МЕНЕН</p>
-          <h2 class="display-names display-names--small">Мирбек <em>&</em> Мээрим</h2>
-          <p class="small-date">14.11.2026</p>
+          <div class="final-names">Мирбек <i>&</i> Мээрим</div>
+          <p class="small-date">14 · 11 · 2026</p>
         </div>
       </section>
-
     </div>
   </main>
 
-  <script src="script.js?v=5"></script>
+  <script src="script.js?v=6"></script>
 </body>
 </html>
