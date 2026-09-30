@@ -1,14 +1,38 @@
-Premium Wedding Invitation
-==========================
+MIRBEK & MEERIM — PREMIUM WEDDING INVITATION
 
-Файлдар:
-- index.html
-- style.css
-- script.js
-- assets/hero.jpg
-- assets/photo1.jpg ... photo5.jpg
-- assets/music.mp3
-- assets/favicon.png
-- assets/og-cover.jpg
+FILES
+-----
+index.html
+style.css
+script.js
+assets/
+  hero.webp
+  story.webp
+  finale.webp
+  music.mp3
+  og-cover.jpg
+  favicon.png
 
-Негизги маалыматтарды script.js файлынын эң башындагы CONFIG блоктон өзгөртүңүз.
+DEMO DATA
+---------
+Couple: Мирбек & Мээрим
+Date: 14 November 2026
+Time: 17:00
+Venue: Aurora Grand Hall (demo)
+WhatsApp: 996555123456 (demo)
+
+CHANGE THESE FIRST
+------------------
+1) script.js
+   WEDDING_DATE
+   WHATSAPP_NUMBER
+
+2) index.html
+   Venue name/address/map link if needed.
+
+3) Replace assets if desired while keeping filenames.
+
+GITHUB PAGES
+------------
+Upload the CONTENTS of this folder to the repository root.
+index.html must be at the root level.

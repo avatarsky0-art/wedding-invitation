@@ -1,20 +1,16 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ky">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#f5f0e8" />
+  <meta name="theme-color" content="#162016" />
+  <title>Мирбек & Мээрим — Wedding Invitation</title>
+  <meta name="description" content="Мирбек жана Мээрим сизди өзгөчө күнүн бирге өткөрүүгө чакырат." />
 
-  <!-- SEO: update these two tags before publishing -->
-  <title>Wedding Invitation — [Күйөө] & [Келин]</title>
-  <meta name="description" content="[Күйөө] жана [Келин] сизди өзгөчө күнүн бирге өткөрүүгө чакырат." />
-
-  <!-- Open Graph: replace YOUR_GITHUB_USERNAME / YOUR_REPO after publishing -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="[Күйөө] & [Келин] — Wedding Invitation" />
+  <meta property="og:title" content="Мирбек & Мээрим — Wedding Invitation" />
   <meta property="og:description" content="Биздин өзгөчө күнүбүздү сиз менен бөлүшкүбүз келет." />
-  <meta property="og:image" content="https://YOUR_GITHUB_USERNAME.github.io/YOUR_REPO/assets/og-cover.jpg" />
-  <meta property="og:url" content="https://YOUR_GITHUB_USERNAME.github.io/YOUR_REPO/" />
+  <meta property="og:image" content="assets/og-cover.jpg" />
   <meta property="og:locale" content="ky_KG" />
 
   <link rel="icon" href="assets/favicon.png" />
@@ -24,282 +20,202 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 
-<body>
+<body class="is-loading">
+  <div class="progress" aria-hidden="true"><span id="scrollProgress"></span></div>
+
   <div class="loader" id="loader" aria-hidden="true">
-    <div class="loader__inner">
-      <span class="eyebrow">Wedding Invitation</span>
-      <div class="loader__names">
-        <span data-groom>[Күйөө]</span>
-        <i>&</i>
-        <span data-bride>[Келин]</span>
-      </div>
-      <span class="loader__line"></span>
-    </div>
+    <div class="loader__seal">M <i>&</i> M</div>
+    <p>Wedding Invitation</p>
+    <span class="loader__line"></span>
   </div>
 
-  <button class="music-toggle" id="musicToggle" type="button" aria-label="Музыканы күйгүзүү">
-    <span class="music-toggle__icon" aria-hidden="true">♫</span>
-    <span class="music-toggle__label">Музыка</span>
-  </button>
-  <audio id="bgMusic" preload="none" loop>
+  <audio id="bgMusic" preload="metadata" loop>
     <source src="assets/music.mp3" type="audio/mpeg" />
   </audio>
 
+  <button class="sound" id="soundToggle" type="button" aria-label="Музыканы күйгүзүү">
+    <span class="sound__disc">♫</span>
+    <span class="sound__text">Музыка</span>
+  </button>
+
   <main>
-    <section class="hero" id="home" aria-labelledby="heroTitle">
-      <div class="hero__media" aria-hidden="true">
-        <img src="assets/hero.jpg" alt="" />
+    <section class="hero scene" id="top">
+      <div class="hero__image parallax-img">
+        <img src="assets/hero.webp" alt="Мирбек жана Мээрим" />
       </div>
-      <div class="hero__overlay" aria-hidden="true"></div>
-      <div class="hero__grain" aria-hidden="true"></div>
+      <div class="hero__veil"></div>
+      <div class="hero__grain"></div>
 
-      <div class="hero__content reveal is-visible">
-        <p class="hero__eyebrow">Wedding Invitation</p>
+      <div class="hero__topline reveal">
+        <span>Wedding Invitation</span>
+        <span>14 · 11 · 2026</span>
+      </div>
 
-        <h1 class="hero__title" id="heroTitle">
-          <span data-groom>[Күйөө]</span>
-          <span class="hero__amp">&</span>
-          <span data-bride>[Келин]</span>
+      <div class="hero__center">
+        <p class="micro reveal">Биздин өзгөчө күнүбүзгө</p>
+        <h1 class="hero__names reveal">
+          <span>Мирбек</span>
+          <i>&</i>
+          <span>Мээрим</span>
         </h1>
-
-        <p class="hero__copy">
-          Биздин өзгөчө күнүбүздү<br />
-          сиз менен бөлүшкүбүз келет.
-        </p>
-
-        <div class="hero__date" aria-label="Тойдун датасы">
-          <span data-date-day>00</span>
-          <i></i>
-          <span data-date-month>Ай</span>
-          <i></i>
-          <span data-date-year>2026</span>
-        </div>
+        <p class="hero__sub reveal">сизди чын жүрөктөн чакырабыз</p>
       </div>
 
-      <a class="scroll-cue" href="#invitation" aria-label="Төмөн жылдыруу">
-        <span>Scroll</span>
+      <a class="hero__scroll" href="#story" aria-label="Төмөн жылдыруу">
+        <span>Ачуу</span>
         <i></i>
       </a>
     </section>
 
-    <section class="section invitation" id="invitation">
-      <div class="shell shell--narrow">
-        <div class="ornament reveal" aria-hidden="true">
-          <span></span><i>✦</i><span></span>
+    <section class="paper scene" id="story">
+      <div class="paper__mark reveal" aria-hidden="true">01</div>
+
+      <div class="story">
+        <div class="story__copy">
+          <p class="eyebrow reveal">Our Story</p>
+          <h2 class="display reveal">Эки жүрөк.<br><em>Бир чечим.</em><br>Бир өмүр.</h2>
+          <p class="body-copy reveal">
+            Жашообуздагы эң маанилүү күндөрдүн бирин сиз менен бирге өткөрүү —
+            биз үчүн өзгөчө бакыт. Биздин кубанычыбызга орток болуп,
+            майрамыбыздын кадырлуу коногу болуңуз.
+          </p>
+          <div class="signature reveal">Мирбек <i>&</i> Мээрим</div>
         </div>
 
-        <p class="section-kicker reveal">Урматтуу коногубуз</p>
-        <h2 class="display-title reveal">Сиз биздин кубанычыбыздын бир бөлүгү болуңуз</h2>
-        <p class="invitation__text reveal">
-          Биздин жашообуздагы эң маанилүү күндөрдүн бирин сиздер менен бирге өткөрүү биз үчүн чоң бакыт.
-          Сизди биздин үйлөнүү тоюбуздун кадырлуу коногу болууга чын жүрөктөн чакырабыз.
-        </p>
-
-        <p class="signature reveal">
-          <span data-groom>[Күйөө]</span>
-          <i>&</i>
-          <span data-bride>[Келин]</span>
-        </p>
+        <figure class="story__photo image-reveal">
+          <img src="assets/story.webp" alt="Мирбек менен Мээримдин романтикалуу сүрөтү" loading="lazy" />
+          <figcaption>Love, laughter & forever.</figcaption>
+        </figure>
       </div>
     </section>
 
-    <section class="section countdown-section" aria-labelledby="countdownTitle">
-      <div class="shell">
-        <div class="section-heading reveal">
-          <p class="section-kicker">Биздин күнгө чейин</p>
-          <h2 class="display-title" id="countdownTitle">Калган убакыт</h2>
-        </div>
-
-        <div class="countdown reveal" id="countdown" aria-live="polite">
-          <div class="countdown__item"><strong id="days">00</strong><span>Күн</span></div>
-          <div class="countdown__item"><strong id="hours">00</strong><span>Саат</span></div>
-          <div class="countdown__item"><strong id="minutes">00</strong><span>Мүнөт</span></div>
-          <div class="countdown__item"><strong id="seconds">00</strong><span>Секунд</span></div>
-        </div>
-
-        <p class="countdown__done" id="countdownDone" hidden>Бүгүн — биздин өзгөчө күн ✦</p>
-      </div>
-    </section>
-
-    <section class="section schedule" id="schedule" aria-labelledby="scheduleTitle">
-      <div class="shell shell--narrow">
-        <div class="section-heading reveal">
-          <p class="section-kicker">Wedding Day</p>
-          <h2 class="display-title" id="scheduleTitle">Той программасы</h2>
-        </div>
-
-        <div class="timeline">
-          <article class="timeline__item reveal">
-            <time>17:00</time>
-            <span class="timeline__marker" aria-hidden="true"></span>
-            <div><h3>Конокторду тосуп алуу</h3><p>Жылуу жолугушуу жана welcome-зона.</p></div>
-          </article>
-          <article class="timeline__item reveal">
-            <time>18:00</time>
-            <span class="timeline__marker" aria-hidden="true"></span>
-            <div><h3>Тойдун башталышы</h3><p>Негизги салтанат жана биринчи куттуктоолор.</p></div>
-          </article>
-          <article class="timeline__item reveal">
-            <time>19:00</time>
-            <span class="timeline__marker" aria-hidden="true"></span>
-            <div><h3>Майрамдык программа</h3><p>Кечки тамак, музыка жана өзгөчө көз ирмемдер.</p></div>
-          </article>
-          <article class="timeline__item reveal">
-            <time>23:00</time>
-            <span class="timeline__marker" aria-hidden="true"></span>
-            <div><h3>Кеченин жыйынтыгы</h3><p>Биз менен бул күндү бөлүшкөнүңүз үчүн рахмат.</p></div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section venue" id="venue" aria-labelledby="venueTitle">
-      <div class="shell">
-        <div class="venue-card reveal">
-          <div class="venue-card__meta">
-            <p class="section-kicker">Location</p>
-            <h2 class="display-title" id="venueTitle" data-venue-name>[Ресторандын аты]</h2>
-            <p class="venue-card__address" data-venue-address>[Толук дарек]</p>
-            <div class="venue-card__time">
-              <span>Башталышы</span>
-              <strong>17:00</strong>
-            </div>
-            <a class="button button--dark" id="mapButton" href="#" target="_blank" rel="noopener">
-              Картадан көрүү
-              <span aria-hidden="true">↗</span>
-            </a>
-          </div>
-          <div class="venue-card__art" aria-hidden="true">
-            <span class="venue-card__ring"></span>
-            <span class="venue-card__monogram">W</span>
+    <section class="date-scene scene">
+      <div class="date-scene__orb" aria-hidden="true"></div>
+      <div class="date-scene__content">
+        <p class="eyebrow light reveal">Save the date</p>
+        <div class="date-lockup">
+          <span class="date-lockup__day reveal">14</span>
+          <div class="date-lockup__side">
+            <span class="reveal">НОЯБРЬ</span>
+            <strong class="reveal">2026</strong>
           </div>
         </div>
+        <p class="date-scene__time reveal">Ишемби · 17:00</p>
       </div>
     </section>
 
-    <section class="section dress-code" aria-labelledby="dressTitle">
-      <div class="shell shell--narrow">
-        <div class="section-heading reveal">
-          <p class="section-kicker">Dress Code</p>
-          <h2 class="display-title" id="dressTitle">Elegant & Timeless</h2>
-        </div>
+    <section class="count-scene scene">
+      <div class="count-scene__intro">
+        <p class="eyebrow reveal">Биздин күнгө чейин</p>
+        <h2 class="display reveal">Ар бир секунд<br><em>бизди жакындатат.</em></h2>
+      </div>
 
-        <p class="dress-code__copy reveal">
-          Сиздерди биздин майрамдын атмосферасына шайкеш келген назик, классикалык жана токтоо түстөгү кийимдерде көрүүгө кубанычтабыз.
-        </p>
-
-        <div class="palette reveal" aria-label="Сунушталган түстөр">
-          <div class="swatch"><span style="--swatch:#F5F0E6"></span><small>Ivory</small></div>
-          <div class="swatch"><span style="--swatch:#DCCDBB"></span><small>Beige</small></div>
-          <div class="swatch"><span style="--swatch:#D8C3A5"></span><small>Champagne</small></div>
-          <div class="swatch"><span style="--swatch:#8D7564"></span><small>Mocha</small></div>
-          <div class="swatch"><span style="--swatch:#1E1C1B"></span><small>Black</small></div>
-        </div>
+      <div class="countdown reveal" id="countdown" aria-live="polite">
+        <div><strong id="days">00</strong><span>Күн</span></div>
+        <div><strong id="hours">00</strong><span>Саат</span></div>
+        <div><strong id="minutes">00</strong><span>Мүнөт</span></div>
+        <div><strong id="seconds">00</strong><span>Секунд</span></div>
       </div>
     </section>
 
-    <section class="section gallery-section" id="gallery" aria-labelledby="galleryTitle">
-      <div class="shell">
-        <div class="section-heading reveal">
-          <p class="section-kicker">Our Story</p>
-          <h2 class="display-title" id="galleryTitle">Көз ирмемдер</h2>
-        </div>
+    <section class="program scene">
+      <div class="program__head">
+        <p class="eyebrow reveal">Wedding Day</p>
+        <h2 class="display reveal">Күндүн<br><em>ыргагы</em></h2>
+      </div>
 
-        <div class="gallery">
-          <button class="gallery__item gallery__item--tall reveal" data-lightbox="assets/photo1.jpg" aria-label="Сүрөттү чоң ачуу">
-            <img src="assets/photo1.jpg" alt="Күйөө менен колуктунун сүрөтү 1" loading="lazy" />
-          </button>
-          <button class="gallery__item reveal" data-lightbox="assets/photo2.jpg" aria-label="Сүрөттү чоң ачуу">
-            <img src="assets/photo2.jpg" alt="Күйөө менен колуктунун сүрөтү 2" loading="lazy" />
-          </button>
-          <button class="gallery__item reveal" data-lightbox="assets/photo3.jpg" aria-label="Сүрөттү чоң ачуу">
-            <img src="assets/photo3.jpg" alt="Күйөө менен колуктунун сүрөтү 3" loading="lazy" />
-          </button>
-          <button class="gallery__item gallery__item--wide reveal" data-lightbox="assets/photo4.jpg" aria-label="Сүрөттү чоң ачуу">
-            <img src="assets/photo4.jpg" alt="Күйөө менен колуктунун сүрөтү 4" loading="lazy" />
-          </button>
-          <button class="gallery__item reveal" data-lightbox="assets/photo5.jpg" aria-label="Сүрөттү чоң ачуу">
-            <img src="assets/photo5.jpg" alt="Күйөө менен колуктунун сүрөтү 5" loading="lazy" />
-          </button>
-        </div>
+      <div class="timeline" id="timeline">
+        <article class="timeline__row reveal">
+          <time>17:00</time><span class="dot"></span>
+          <div><h3>Конокторду тосуп алуу</h3><p>Жылуу жолугушуу жана welcome-зона.</p></div>
+        </article>
+        <article class="timeline__row reveal">
+          <time>18:00</time><span class="dot"></span>
+          <div><h3>Тойдун ачылышы</h3><p>Салтанаттын негизги бөлүгү жана куттуктоолор.</p></div>
+        </article>
+        <article class="timeline__row reveal">
+          <time>19:30</time><span class="dot"></span>
+          <div><h3>Майрамдык программа</h3><p>Музыка, жылуу сөздөр жана өзгөчө көз ирмемдер.</p></div>
+        </article>
+        <article class="timeline__row reveal">
+          <time>20:30</time><span class="dot"></span>
+          <div><h3>Биринчи бий</h3><p>Биздин кечтин эң назик көз ирмеми.</p></div>
+        </article>
+        <article class="timeline__row reveal">
+          <time>23:00</time><span class="dot"></span>
+          <div><h3>Кеченин жыйынтыгы</h3><p>Сиз менен бөлүшүлгөн эстен кеткис кеч.</p></div>
+        </article>
       </div>
     </section>
 
-    <section class="section rsvp" id="rsvp" aria-labelledby="rsvpTitle">
-      <div class="shell">
-        <div class="rsvp-card reveal">
-          <div class="rsvp-card__intro">
-            <p class="section-kicker">RSVP</p>
-            <h2 class="display-title" id="rsvpTitle">Сизди күтөбүз</h2>
-            <p>Катышууңузду алдын ала ырастап койсоңуз, биз абдан ыраазы болобуз.</p>
-          </div>
+    <section class="venue scene">
+      <div class="venue__card image-reveal">
+        <div class="venue__number">03</div>
+        <p class="eyebrow">Location</p>
+        <h2>Aurora<br>Grand Hall</h2>
+        <p>Бишкек шаары · 17:00</p>
+        <a class="btn" id="mapLink" href="https://www.google.com/maps/search/?api=1&query=Bishkek" target="_blank" rel="noopener">
+          Картадан көрүү <span>↗</span>
+        </a>
+      </div>
+      <div class="venue__quote reveal">
+        <p>«Биздин майрамдын эң кооз бөлүгү — сиздин биз менен болгонуңуз.»</p>
+      </div>
+    </section>
 
-          <form class="rsvp-form" id="rsvpForm">
+    <section class="rsvp scene" id="rsvp">
+      <div class="rsvp__inner">
+        <p class="eyebrow light reveal">RSVP</p>
+        <h2 class="display light reveal">Сизди<br><em>күтөбүз.</em></h2>
+        <p class="rsvp__intro reveal">Катышууңузду WhatsApp аркылуу алдын ала ырастап коюңуз.</p>
+
+        <form id="rsvpForm" class="form reveal">
+          <label>
+            <span>Атыңыз</span>
+            <input id="guestName" type="text" placeholder="Атыңызды жазыңыз" required />
+          </label>
+
+          <div class="form__split">
             <label>
-              <span>Атыңыз</span>
-              <input type="text" id="guestName" autocomplete="name" placeholder="Мисалы: Айбек" required />
-            </label>
-
-            <fieldset>
-              <legend>Катышасызбы?</legend>
-              <div class="choice-row">
-                <label class="choice">
-                  <input type="radio" name="attendance" value="Ооба, катышам" checked />
-                  <span>Ооба</span>
-                </label>
-                <label class="choice">
-                  <input type="radio" name="attendance" value="Тилекке каршы катыша албайм" />
-                  <span>Тилекке каршы жок</span>
-                </label>
-              </div>
-            </fieldset>
-
-            <label>
-              <span>Коноктордун саны</span>
-              <select id="guestCount">
-                <option value="1">1 адам</option>
-                <option value="2">2 адам</option>
-                <option value="3">3 адам</option>
-                <option value="4">4 адам</option>
-                <option value="5">5 адам</option>
+              <span>Катышуу</span>
+              <select id="attendance">
+                <option value="Ооба, катышам">Ооба, катышам</option>
+                <option value="Тилекке каршы катыша албайм">Тилекке каршы жок</option>
               </select>
             </label>
 
             <label>
-              <span>Кыска каалоо же билдирүү</span>
-              <textarea id="guestMessage" rows="4" placeholder="Каалооңузду жазыңыз..."></textarea>
+              <span>Конок саны</span>
+              <select id="guestCount">
+                <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+              </select>
             </label>
+          </div>
 
-            <button class="button button--gold" type="submit">
-              WhatsApp аркылуу ырастоо
-              <span aria-hidden="true">↗</span>
-            </button>
+          <label>
+            <span>Каалоо</span>
+            <textarea id="guestMessage" rows="3" placeholder="Кыска билдирүү..."></textarea>
+          </label>
 
-            <a class="google-form-link" id="googleFormLink" href="#" target="_blank" rel="noopener" hidden>
-              Google Forms аркылуу жооп берүү
-            </a>
-          </form>
-        </div>
+          <button class="btn btn--cream" type="submit">WhatsApp аркылуу жооп берүү <span>↗</span></button>
+        </form>
+      </div>
+    </section>
+
+    <section class="finale scene">
+      <div class="finale__image parallax-img">
+        <img src="assets/finale.webp" alt="Мирбек жана Мээрим күн батышында" loading="lazy" />
+      </div>
+      <div class="finale__veil"></div>
+
+      <div class="finale__content">
+        <p class="micro reveal">With love,</p>
+        <h2 class="finale__names reveal">Мирбек <i>&</i> Мээрим</h2>
+        <p class="finale__date reveal">14 · 11 · 2026</p>
+        <a class="finale__top reveal" href="#top">Башына кайтуу ↑</a>
       </div>
     </section>
   </main>
-
-  <footer class="footer">
-    <div class="shell shell--narrow">
-      <p class="footer__small">With love,</p>
-      <p class="footer__names">
-        <span data-groom>[Күйөө]</span>
-        <i>&</i>
-        <span data-bride>[Келин]</span>
-      </p>
-      <p class="footer__date" id="footerDate">00 • 00 • 2026</p>
-    </div>
-  </footer>
-
-  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Сүрөттү чоң көрүү" hidden>
-    <button class="lightbox__close" id="lightboxClose" type="button" aria-label="Жабуу">×</button>
-    <img id="lightboxImage" src="" alt="" />
-  </div>
 
   <script src="script.js"></script>
 </body>
