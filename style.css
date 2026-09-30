@@ -360,3 +360,66 @@ button,a{-webkit-tap-highlight-color:transparent}
     font-size: clamp(2.55rem, 12vw, 4.7rem);
   }
 }
+
+
+/* ===== TYPOGRAPHY v3 — VISIBLE UPDATE ===== */
+:root{
+  --script:"Marck Script","Segoe Script",cursive;
+}
+
+/* Names get one consistent handwritten signature style */
+.hero__names,
+.finale__names,
+.envelope__card strong,
+.signature {
+  font-family: var(--script);
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+/* Keep all editorial headings elegant and consistent */
+.display,
+.date-lockup__day,
+.date-lockup__side strong,
+.venue__card h2,
+.venue__quote p {
+  font-family: var(--serif);
+  font-weight: 400;
+}
+
+/* Better sizing for handwritten names */
+.hero__names {
+  font-size: clamp(4.8rem, 17vw, 11.2rem);
+  line-height: .78;
+}
+.hero__names i,
+.finale__names i,
+.signature i,
+.envelope__card strong i {
+  font-family: var(--serif);
+  font-style: normal;
+}
+.finale__names {
+  font-size: clamp(4.2rem, 13vw, 9rem);
+  line-height: .9;
+}
+.envelope__card strong {
+  font-size: clamp(2.6rem, 9vw, 4.2rem);
+  line-height: 1;
+}
+.signature {
+  font-size: 2.6rem;
+}
+
+@media(max-width:560px){
+  .hero__names{
+    font-size: clamp(4rem, 19vw, 6.3rem);
+    line-height: .83;
+  }
+  .finale__names{
+    font-size: clamp(3.3rem, 15.5vw, 5.2rem);
+  }
+  .envelope__card strong{
+    font-size: clamp(2.3rem, 10vw, 3.5rem);
+  }
+}
