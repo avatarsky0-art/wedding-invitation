@@ -1,1 +1,1 @@
-v7 rebuilt from reference. Upload index.html style.css script.js and assets/branch.svg. Music section removed. Open button is a real anchor and cannot block navigation.
+v8 direct-reference visual system. Update root index.html/style.css/script.js and upload assets/branch.svg + assets/floral.svg.
